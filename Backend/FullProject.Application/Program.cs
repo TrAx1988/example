@@ -1,5 +1,4 @@
 
-using FullProject.Api.Helper;
 using FullProject.Infrastructure.Database;
 using FullProject.Infrastructure.GraphQL;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -21,7 +20,7 @@ namespace FullProject.Api
             builder.Services.AddControllers();
             builder.Services.AddOpenApi(option =>
             {
-                option.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
+                option.AddDocumentTransformer<>
             });
 
             builder.Services.AddAuthentication(options =>
@@ -45,6 +44,8 @@ namespace FullProject.Api
                     {
                         PreferredSecuritySchemes = ["Bearer"],
                     };
+
+                    options.AddPreferredSecuritySchemes("Bearer");
                 });
             }
 

@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FullProject.Api.Controllers
 {
-    [Route("api/test")]
+    [Authorize]
     [ApiController]
+    [Route("api/test")]
     public class TestController : ControllerBase
     {
         public TestController()
