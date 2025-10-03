@@ -16,6 +16,35 @@
     }
 
     /// <summary>
+    /// Defines a contract for managing a transactional operation, allowing changes to be committed or rolled back.
+    /// </summary>
+    /// <remarks>Implementations of this interface provide mechanisms to ensure atomicity of operations within
+    /// a transaction. Transactions can be committed to make changes permanent or rolled back to undo changes. This
+    /// interface supports both synchronous and asynchronous operations, and implements <see cref="IDisposable"/>  and
+    /// <see cref="IAsyncDisposable"/> to ensure proper resource cleanup.</remarks>
+    public interface ITransaction : IDisposable, IAsyncDisposable
+    {
+        /// <summary>
+        /// Commits the transaction, making all changes permanent.
+        /// </summary>
+        void Commit();
+        /// <summary>
+        /// Asynchronously commits the transaction, making all changes permanent.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous commit operation.</returns>
+        Task CommitAsync();
+        /// <summary>
+        /// Rolls back the transaction, undoing all changes made during the transaction.
+        /// </summary>
+        void Rollback();
+        /// <summary>
+        /// Asynchronously rolls back the transaction, undoing all changes made during the transaction.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous rollback operation.</returns>
+        Task RollbackAsync();
+    }
+
+    /// <summary>
     /// Session for database operations.
     /// </summary>
     public interface ISession : IDisposable, IAsyncDisposable
@@ -33,6 +62,14 @@
         /// invoking this method.</remarks>
         /// <returns>A task that represents the asynchronous save operation.</returns>
         Task SaveAsync();
+
+        /// <summary>
+        /// Begins a new transaction.
+        /// </summary>
+        /// <remarks>The returned transaction must be committed or rolled back to complete the operation. 
+        /// Ensure proper disposal of the transaction to release any associated resources.</remarks>
+        /// <returns>An <see cref="ITransaction"/> instance representing the newly started transaction.</returns>
+        ITransaction BeginTransaction();
 
         /// <summary>
         /// Retrieves a repository instance for the specified entity type.

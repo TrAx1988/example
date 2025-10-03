@@ -1,6 +1,7 @@
 ﻿
 using FullProject.Infrastructure.Database.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace FullProject.Infrastructure.Database
 {
@@ -24,7 +25,7 @@ namespace FullProject.Infrastructure.Database
     /// <inheritdoc/>
     internal class Session : ISession
     {
-        private readonly DbContext _dbContext;
+        internal readonly DbContext _dbContext;
 
         public Session(DbContext dbContext)
         {
@@ -59,6 +60,63 @@ namespace FullProject.Infrastructure.Database
         public IRepository<T> GetRepository<T>() where T : class
         {
             return new Repository<T>(_dbContext.Set<T>());
+        }
+
+        /// <inheritdoc/>
+        public ITransaction BeginTransaction()
+        {
+            var transaction = _dbContext.Database.BeginTransaction();
+
+            return new Transaction(this, transaction);
+        }
+    }
+
+    /// <inheritdoc/>
+    internal class Transaction : ITransaction
+    {
+        private readonly Session _session;
+        private readonly IDbContextTransaction _transaction;
+
+        public Transaction(Session session, IDbContextTransaction transaction)
+        {
+            _session = session;
+            _transaction = transaction;
+        }
+
+        /// <inheritdoc/>
+        public void Commit()
+        {
+            _transaction.Commit();
+        }
+
+        /// <inheritdoc/>
+        public Task CommitAsync()
+        {
+            return _transaction.CommitAsync();
+        }
+
+        /// <inheritdoc/>
+        public void Dispose()
+        {
+            _transaction.Dispose();
+        }
+
+        /// <inheritdoc/>
+        public ValueTask DisposeAsync()
+        {
+            return _transaction.DisposeAsync();
+        }
+
+        /// <inheritdoc/>
+        public void Rollback()
+        {
+            _transaction.Rollback();
+        }
+
+        /// <inheritdoc/>
+        public Task RollbackAsync()
+        {
+            return _transaction.RollbackAsync();
         }
     }
 }

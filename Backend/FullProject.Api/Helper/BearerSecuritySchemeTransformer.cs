@@ -4,6 +4,12 @@ using Microsoft.OpenApi.Models;
 
 namespace FullProject.Api.Helper
 {
+    /// <summary>
+    /// Transforms an OpenAPI document to include a "Bearer" security scheme if it is supported by the application.
+    /// </summary>
+    /// <remarks>This transformer checks the available authentication schemes provided by the application and,
+    /// if a "Bearer" scheme is found, modifies the OpenAPI document to include the corresponding security scheme and
+    /// requirements. The "Bearer" scheme is configured to use JWT tokens in the HTTP Authorization header.</remarks>
     internal sealed class BearerSecuritySchemeTransformer : IOpenApiDocumentTransformer
     {
         private readonly IAuthenticationSchemeProvider _authenticationSchemeProvider;
