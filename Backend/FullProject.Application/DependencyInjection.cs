@@ -1,4 +1,5 @@
 ﻿using Cortex.Mediator.DependencyInjection;
+using Mapster;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,6 +15,8 @@ namespace FullProject.Application
 
                 options.OnlyPublicClasses = false;
             });
+
+            services.AddMapster();
         }
     }
 }

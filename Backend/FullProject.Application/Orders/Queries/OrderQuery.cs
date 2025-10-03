@@ -2,7 +2,7 @@
 using FullProject.Domain.Entities;
 using FullProject.Infrastructure;
 
-namespace FullProject.Application.Queries
+namespace FullProject.Application.Orders.Queries
 {
     public record GetOrders() : IQuery<IList<Order>>;
 

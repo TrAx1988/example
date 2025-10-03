@@ -1,5 +1,5 @@
 ﻿using Cortex.Mediator;
-using FullProject.Application.Queries;
+using FullProject.Application.Orders.Queries;
 using FullProject.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
