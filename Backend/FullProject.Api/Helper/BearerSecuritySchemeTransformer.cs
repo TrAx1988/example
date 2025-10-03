@@ -19,6 +19,7 @@ namespace FullProject.Api.Helper
             _authenticationSchemeProvider = authenticationSchemeProvider;
         }
 
+        /// <inheritdoc/>
         public async Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
         {
             var authenticationSchemes = await _authenticationSchemeProvider.GetAllSchemesAsync();
