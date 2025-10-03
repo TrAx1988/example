@@ -10,6 +10,8 @@ namespace FullProject.Infrastructure.Database
         public static void AddCommerce(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<CommerceContext>(options => options.UseNpgsql("Host=localhost;Port=5432;Database=sit;Username=sit;Password=sit;"));
+
+            services.AddSingleton<ISessionFactory, SessionFactory>();
         }
     }
 }

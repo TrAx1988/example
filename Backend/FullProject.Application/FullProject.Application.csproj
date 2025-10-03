@@ -7,7 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Business\" />
+    <PackageReference Include="Cortex.Mediator" Version="1.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FullProject.Domain\FullProject.Domain.csproj" />
+    <ProjectReference Include="..\FullProject.Infrastructure\FullProject.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
