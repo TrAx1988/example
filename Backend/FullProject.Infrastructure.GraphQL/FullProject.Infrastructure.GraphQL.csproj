@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HotChocolate.AspNetCore" Version="15.1.10" />
+    <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="15.1.10" />
+    <PackageReference Include="HotChocolate.Data" Version="15.1.10" />
+    <PackageReference Include="HotChocolate.Data.EntityFramework" Version="15.1.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Mutation\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FullProject.Domain\FullProject.Domain.csproj" />
+    <ProjectReference Include="..\FullProject.Infrastructure.Database\FullProject.Infrastructure.Database.csproj" />
+  </ItemGroup>
+
+</Project>
