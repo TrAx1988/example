@@ -1,11 +1,10 @@
 ﻿using Cortex.Mediator.Queries;
 using FullProject.Domain.Entities;
+using FullProject.Domain.Queries;
 using FullProject.Infrastructure;
 
 namespace FullProject.Application.Orders.Queries
 {
-    public record GetOrders() : IQuery<IList<Order>>;
-
     internal class GetOrdersHandler : IQueryHandler<GetOrders, IList<Order>>
     {
         private readonly ISessionFactory _sessionFactory;

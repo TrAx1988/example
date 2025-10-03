@@ -9,7 +9,7 @@ namespace FullProject.Application
     {
         public static void AddExampleApplication(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddCortexMediator(configuration, [typeof(DependencyInjection)], options =>
+            services.AddCortexMediator(configuration, [typeof(DependencyInjection), typeof(Domain.Queries.GetOrders)], options =>
             {
                 options.AddDefaultBehaviors();
 
