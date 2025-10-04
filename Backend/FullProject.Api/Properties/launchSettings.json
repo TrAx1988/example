@@ -1,17 +1,14 @@
 {
   "profiles": {
-    "http": {
-      "commandName": "Project",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:8080"
-    },
     "https": {
       "commandName": "Project",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionStrings__Commerce__Host": "localhost",
+        "ConnectionStrings__Commerce__Port": "5432",
+        "ConnectionStrings__Commerce__Database": "sit",
+        "ConnectionStrings__Commerce__User": "sit",
+        "ConnectionStrings__Commerce__Password": "sit"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:8081;http://localhost:8080",

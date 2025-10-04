@@ -1,7 +1,7 @@
 ﻿using Cortex.Mediator.Notifications;
 using FullProject.Domain.Events;
 
-namespace FullProject.Application.Orders.Events
+namespace FullProject.Application.Commerce.Orders.Events
 {
     /// <summary>
     /// Stellt einen Handler für das Ereignis <see cref="OrderCreated"/> dar.

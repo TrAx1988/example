@@ -3,7 +3,7 @@ using FullProject.Domain.GraphQL.Queries;
 using FullProject.Domain.Repository;
 using HotChocolate.Authorization;
 
-namespace FullProject.Infrastructure.GraphQL.Query
+namespace FullProject.Infrastructure.GraphQL.Commerce.Query
 {
     [Authorize]
     /// <inheritdoc/>

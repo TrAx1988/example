@@ -5,10 +5,10 @@ using FullProject.Domain.Entities;
 using FullProject.Domain.Events;
 using FullProject.Infrastructure;
 
-namespace FullProject.Application.Orders.Commands
+namespace FullProject.Application.Commerce.Orders.Commands
 {
     /// <summary>
-    /// Stellt einen Handler für das Ereignis <see cref="CreateOrderCommand"/> dar.
+    /// Stellt einen Handler für das Ereignis <see cref="CreateOrderCommand"/> dar.q
     /// </summary>
     public class CreateUserHandler : ICommandHandler<CreateOrderCommand, Order>
     {

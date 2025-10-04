@@ -1,4 +1,4 @@
-﻿using FullProject.Infrastructure.GraphQL.Query;
+﻿using FullProject.Infrastructure.GraphQL.Commerce.Query;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

@@ -3,7 +3,7 @@ using FullProject.Domain.Entities;
 using FullProject.Domain.Queries;
 using FullProject.Infrastructure.Data;
 
-namespace FullProject.Application.Orders.Queries
+namespace FullProject.Application.Commerce.Orders.Queries
 {
     /// <summary>
     /// Stellt einen Handler für das Ereignis <see cref="GetOrders"/> dar.
