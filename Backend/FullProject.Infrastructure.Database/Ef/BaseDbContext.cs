@@ -1,4 +1,5 @@
 ﻿using FullProject.Infrastructure.Data;
+using FullProject.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -133,9 +134,7 @@ namespace FullProject.Infrastructure.Database.Ef
 
             if (!string.IsNullOrWhiteSpace(connectionString))
             {
-                connectionString = Environment.ExpandEnvironmentVariables(connectionString);
-
-                optionsBuilder.UseNpgsql(connectionString);
+                optionsBuilder.UseNpgsql(connectionString.ExpandEnvironmentVariables());
             }
         }
     }

@@ -8,20 +8,27 @@ namespace FullProject.Application
 {
     public static class DependencyInjection
     {
-        public static void AddExampleApplication(this IServiceCollection services, IConfiguration configuration)
+        public static void AddMapping(this IServiceCollection services, Assembly[]? assembliesToScan = null)
         {
+            List<Assembly> assemblies = [Assembly.GetExecutingAssembly()];
+
+            if (assembliesToScan is not null && assembliesToScan.Length > 0)
+            {
+                assemblies.AddRange(assembliesToScan);
+            }
+
             services.AddMapster();
 
-            TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetExecutingAssembly());
+            TypeAdapterConfig.GlobalSettings.Scan(assemblies.ToArray());
         }
 
-        public static void AddMediator(this IServiceCollection services, IConfiguration configuration, Type[] assemblyToScan)
+        public static void AddMediator(this IServiceCollection services, IConfiguration configuration, Type[]? assembliesToScan = null)
         {
             List<Type> assemblies = [typeof(DependencyInjection), typeof(Domain.Queries.GetOrders)];
 
-            if (assemblyToScan is not null && assemblyToScan.Length > 0)
+            if (assembliesToScan is not null && assembliesToScan.Length > 0)
             {
-                assemblies.AddRange(assemblyToScan);
+                assemblies.AddRange(assembliesToScan);
             }
 
             services.AddCortexMediator(configuration, assemblies.ToArray(), options =>
