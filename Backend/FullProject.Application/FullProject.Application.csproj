@@ -14,8 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FullProject.Domain\FullProject.Domain.csproj" />
-    <ProjectReference Include="..\FullProject.Infrastructure.Database\FullProject.Infrastructure.Database.csproj" />
-    <ProjectReference Include="..\FullProject.Infrastructure.Kafka\FullProject.Infrastructure.Kafka.csproj" />
     <ProjectReference Include="..\FullProject.Infrastructure\FullProject.Infrastructure.csproj" />
   </ItemGroup>
 

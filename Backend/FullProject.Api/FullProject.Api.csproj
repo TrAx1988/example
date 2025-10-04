@@ -27,6 +27,8 @@
     <ProjectReference Include="..\FullProject.Application\FullProject.Application.csproj" />
     <ProjectReference Include="..\FullProject.Infrastructure.Database\FullProject.Infrastructure.Database.csproj" />
     <ProjectReference Include="..\FullProject.Infrastructure.GraphQL\FullProject.Infrastructure.GraphQL.csproj" />
+    <ProjectReference Include="..\FullProject.Infrastructure.Kafka\FullProject.Infrastructure.Kafka.csproj" />
+    <ProjectReference Include="..\FullProject.Infrastructure.Proxy\FullProject.Infrastructure.Proxy.csproj" />
   </ItemGroup>
 
 </Project>
