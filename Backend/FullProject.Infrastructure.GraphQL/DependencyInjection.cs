@@ -1,4 +1,5 @@
-﻿using FullProject.Infrastructure.GraphQL.Commerce.Query;
+﻿using FullProject.Infrastructure.GraphQL.Commerce.Mutation;
+using FullProject.Infrastructure.GraphQL.Commerce.Query;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +16,8 @@ namespace FullProject.Infrastructure.GraphQL
                 .AddFiltering()
                 .AddProjections()
                 .AddSorting()
-                .AddQueryType<OrderQuery>();
+                .AddQueryType<OrderQuery>()
+                .AddMutationType<OrderMutation>();
         }
 
         public static void UseGraphQL(this IApplicationBuilder app)

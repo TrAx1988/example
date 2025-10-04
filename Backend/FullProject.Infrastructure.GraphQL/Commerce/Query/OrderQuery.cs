@@ -1,9 +1,7 @@
 ﻿using FullProject.Domain.Entities;
 using FullProject.Domain.GraphQL.Queries;
-using FullProject.Domain.Models.Orders;
 using FullProject.Domain.Repository;
 using HotChocolate.Authorization;
-using Mapster;
 using MapsterMapper;
 
 namespace FullProject.Infrastructure.GraphQL.Commerce.Query
@@ -12,11 +10,8 @@ namespace FullProject.Infrastructure.GraphQL.Commerce.Query
     [Authorize]
     public class OrderQuery : IOrderQuery
     {
-        private readonly IMapper _mapper;
-
         public OrderQuery(IMapper mapper)
         {
-            _mapper = mapper;
         }
 
         /// <inheritdoc/>
@@ -24,10 +19,9 @@ namespace FullProject.Infrastructure.GraphQL.Commerce.Query
         [UseProjection]
         [UseFiltering]
         [UseSorting]
-        [GraphQLType(typeof(List<OrderDto>))]
-        public IQueryable<OrderDto> Orders([Service] ICommerceRepository repository)
+        public IQueryable<Order> Orders([Service] ICommerceUnitOfWork unitOfWork)
         {
-            return repository.GetAll<Order>(false).ProjectToType<OrderDto>();
+            return unitOfWork.Repository.GetAll<Order>(false, false);
         }
     }
 }

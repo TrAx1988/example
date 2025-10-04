@@ -45,7 +45,7 @@
         /// <summary>
         /// Speichert Änderungen in der Datenbank.
         /// </summary>
-        void Save();
+        void Commit();
 
         /// <summary>
         /// Speichert den aktuellen Zustand oder die Daten asynchron im zugrunde liegenden Speicher.
@@ -55,7 +55,7 @@
         /// Es liegt in der Verantwortung des Aufrufers, sicherzustellen, dass alle erforderlichen Daten vor dem Aufruf dieser Methode vorbereitet sind.
         /// </remarks>
         /// <returns>Ein Task, der die asynchrone Speicheroperation repräsentiert.</returns>
-        Task SaveAsync();
+        Task CommitAsync();
 
         /// <summary>
         /// Startet eine neue Transaktion.

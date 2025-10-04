@@ -29,13 +29,13 @@ namespace FullProject.Infrastructure.Database.Ef
         }
 
         /// <inheritdoc/>
-        public void Save()
+        public void Commit()
         {
             _dbContext.SaveChanges();
         }
 
         /// <inheritdoc/>
-        public Task SaveAsync()
+        public Task CommitAsync()
         {
             return _dbContext.SaveChangesAsync();
         }

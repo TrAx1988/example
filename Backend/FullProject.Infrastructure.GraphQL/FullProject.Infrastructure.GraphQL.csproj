@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commerce\Mutation\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\FullProject.Domain\FullProject.Domain.csproj" />
     <ProjectReference Include="..\FullProject.Infrastructure.Database\FullProject.Infrastructure.Database.csproj" />
   </ItemGroup>
