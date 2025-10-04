@@ -14,14 +14,26 @@ namespace FullProject.Infrastructure
         /// </summary>
         /// <returns>Die aktuelle Zeit als <see cref="DateTime"/>.</returns>
         Task<DateTime> GetCurrentDateTimeAsync();
-    }
 
+        /// <summary>
+        /// Gibt das aktuelle Datum zurück.
+        /// </summary>
+        /// <returns>Das aktuelle Datum als <see cref="DateOnly"/>.</returns>
+        Task<DateOnly> GetCurrentDateAsync();
+    }
 
     /// <summary>
     /// Liefert die aktuelle Systemzeit.
     /// </summary>
     public class SystemTimeService : ITimeService
     {
+        /// <inheritdoc/>
+        public Task<DateOnly> GetCurrentDateAsync()
+        {
+            return Task.FromResult(DateOnly.FromDateTime(DateTime.UtcNow));
+        }
+
+        /// <inheritdoc/>
         public Task<DateTime> GetCurrentDateTimeAsync()
         {
             return Task.FromResult(DateTime.UtcNow);
@@ -40,6 +52,15 @@ namespace FullProject.Infrastructure
             _ntpServer = ntpServer;
         }
 
+        /// <inheritdoc/>
+        public async Task<DateOnly> GetCurrentDateAsync()
+        {
+            var currentTime = await GetCurrentDateTimeAsync();
+
+            return DateOnly.FromDateTime(currentTime);
+        }
+
+        /// <inheritdoc/>
         public async Task<DateTime> GetCurrentDateTimeAsync()
         {
             // NTP-Paket vorbereiten

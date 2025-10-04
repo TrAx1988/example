@@ -11,7 +11,7 @@ namespace FullProject.Infrastructure
             {
                 var ntpServer = configuration.GetValue<string>("Endpoints:NtpService");
 
-                if (ntpServer is not null && ntpServer.Length > 0)
+                if (!string.IsNullOrWhiteSpace(ntpServer))
                 {
                     return new NtpTimeService(ntpServer);
                 }
