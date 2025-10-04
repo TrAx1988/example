@@ -25,7 +25,7 @@ namespace FullProject.Infrastructure
     /// <summary>
     /// Liefert die aktuelle Systemzeit.
     /// </summary>
-    public class SystemTimeService : ITimeService
+    internal class SystemTimeService : ITimeService
     {
         /// <inheritdoc/>
         public Task<DateOnly> GetCurrentDateAsync()
@@ -43,7 +43,7 @@ namespace FullProject.Infrastructure
     /// <summary>
     /// Liefert die aktuelle Zeit von einem NTP-Server.
     /// </summary>
-    public class NtpTimeService : ITimeService
+    internal class NtpTimeService : ITimeService
     {
         private readonly string _ntpServer;
 

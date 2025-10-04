@@ -3,7 +3,7 @@
 namespace FullProject.Domain.UnitOfWork
 {
     /// <summary>
-    /// Sitzung für Datenbankoperationen im Commerce.
+    /// Sitzung für Datenbankoperationen im Commerce-Kontext.
     /// </summary>
     public interface ICommerceUnitOfWork : IUnitOfWork
     {
