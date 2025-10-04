@@ -5,6 +5,9 @@ using FullProject.Infrastructure.Data;
 
 namespace FullProject.Application.Orders.Queries
 {
+    /// <summary>
+    /// Stellt einen Handler für das Ereignis <see cref="GetOrders"/> dar.
+    /// </summary>
     internal class GetOrdersHandler : IQueryHandler<GetOrders, IList<Order>>
     {
         private readonly IUnitOfWorkFactory _sessionFactory;

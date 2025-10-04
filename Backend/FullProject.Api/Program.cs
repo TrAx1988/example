@@ -16,7 +16,7 @@ namespace FullProject.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddServices();
+            builder.Services.AddServices(builder.Configuration);
 
             builder.Services.AddEf(builder.Configuration);
 
@@ -65,16 +65,14 @@ namespace FullProject.Api
             // Open Api
             app.MapOpenApi();
 
-            if (app.Environment.IsDevelopment())
+            app.MapScalarApiReference(options =>
             {
-                app.MapScalarApiReference(options =>
+                options.Authentication = new ScalarAuthenticationOptions()
                 {
-                    options.Authentication = new ScalarAuthenticationOptions()
-                    {
-                        PreferredSecuritySchemes = ["Bearer"],
-                    };
-                });
-            }
+                    PreferredSecuritySchemes = ["Bearer"],
+                };
+            });
+
 
             app.UseHttpsRedirection();
 

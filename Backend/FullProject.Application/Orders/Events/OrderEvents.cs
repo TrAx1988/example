@@ -3,7 +3,10 @@ using FullProject.Domain.Events;
 
 namespace FullProject.Application.Orders.Events
 {
-    public class OrderCreatedHandler : INotificationHandler<OrderCreated>
+    /// <summary>
+    /// Stellt einen Handler für das Ereignis <see cref="OrderCreated"/> dar.
+    /// </summary>
+    internal class OrderCreatedHandler : INotificationHandler<OrderCreated>
     {
         public Task Handle(OrderCreated notification, CancellationToken cancellationToken)
         {
