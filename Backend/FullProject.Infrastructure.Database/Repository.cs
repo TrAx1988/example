@@ -14,9 +14,14 @@ namespace FullProject.Infrastructure.Database
         }
 
         /// <inheritdoc/>
-        public IQueryable<T> GetAll()
+        public IQueryable<T> GetAll(bool tracking = true)
         {
-            return _dbSet.AsQueryable();
+            if (tracking)
+            {
+                return _dbSet.AsQueryable();
+            }
+
+            return _dbSet.AsQueryable().AsNoTracking();
         }
     }
 }

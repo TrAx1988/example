@@ -1,27 +1,20 @@
 ﻿using FullProject.Domain.Entities;
 using FullProject.Domain.GraphQL.Queries;
-using FullProject.Infrastructure.Database.Context;
+using FullProject.Domain.Repository;
 using HotChocolate.Authorization;
 
 namespace FullProject.Infrastructure.GraphQL.Query
 {
     [Authorize]
+    /// <inheritdoc/>
     public class OrderQuery : IOrderQuery
     {
         [UsePaging]
         [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public IQueryable<Order> Orders([Service] CommerceContext commerceContext)
-        {
-            return commerceContext.Orders;
-        }
-
-        [UsePaging]
-        [UseProjection]
-        [UseFiltering]
-        [UseSorting]
-        public IQueryable<Order> Orders(IRepository<Order> repository)
+        /// <inheritdoc/>
+        public IQueryable<Order> Orders([Service] ICommerceRepository repository)
         {
             throw new NotImplementedException();
         }

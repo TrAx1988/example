@@ -21,12 +21,26 @@ namespace FullProject.Api
             builder.Services.AddExampleApplication(builder.Configuration);
 
 
+            // Application Insights
+            var applicationInsights = builder.Configuration.GetValue<string>("ApplicationInsights:ConnectionString");
+
+            if (!string.IsNullOrWhiteSpace(applicationInsights))
+            {
+                builder.Services.AddApplicationInsightsTelemetry(option =>
+                {
+                    option.ConnectionString = applicationInsights;
+                });
+            }
+
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddControllers();
             builder.Services.AddOpenApi(option =>
             {
                 option.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
             });
 
+
+            // Authentication
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -37,11 +51,15 @@ namespace FullProject.Api
                 options.Audience = builder.Configuration.GetValue<string>("Authentication:Audience");
             });
 
+
+
             var app = builder.Build();
+
+            // Open Api
+            app.MapOpenApi();
 
             if (app.Environment.IsDevelopment())
             {
-                app.MapOpenApi();
                 app.MapScalarApiReference(options =>
                 {
                     options.Authentication = new ScalarAuthenticationOptions()
@@ -56,7 +74,9 @@ namespace FullProject.Api
             app.UseAuthentication();
             app.UseAuthorization();
 
+            // Use services to the container.
             app.UseGraphQL();
+
 
             app.MapControllers();
 
