@@ -1,12 +1,13 @@
 ﻿using FullProject.Infrastructure.GraphQL.Query;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FullProject.Infrastructure.GraphQL
 {
     public static class DependencyInjection
     {
-        public static void AddGraphQL(this IServiceCollection services)
+        public static void AddGraphQL(this IServiceCollection services, IConfiguration configuration)
         {
             services
                 .AddGraphQLServer()

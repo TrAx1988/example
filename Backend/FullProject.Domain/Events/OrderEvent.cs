@@ -4,12 +4,14 @@ using FullProject.Domain.Entities;
 namespace FullProject.Domain.Events
 {
     /// <summary>
-    /// Represents a notification that an order has been created.
+    /// Stellt eine Benachrichtigung dar, dass eine Bestellung erstellt wurde.
     /// </summary>
-    /// <remarks>This notification contains the details of the created order and the date when the order was
-    /// created. It is typically used in event-driven systems to signal that a new order has been successfully
-    /// created.</remarks>
-    /// <param name="order">The order that was created. This parameter cannot be <see langword="null"/>.</param>
-    /// <param name="date">The date and time when the order was created.</param>
+    /// <remarks>
+    /// Diese Benachrichtigung enthält die Details der erstellten Bestellung sowie das Datum, an dem die Bestellung
+    /// angelegt wurde. Sie wird typischerweise in ereignisgesteuerten Systemen verwendet, um anzuzeigen, dass eine neue Bestellung
+    /// erfolgreich erstellt wurde.
+    /// </remarks>
+    /// <param name="order">Die erstellte Bestellung. Dieser Parameter darf nicht <see langword="null"/> sein.</param>
+    /// <param name="date">Das Datum und die Uhrzeit, zu der die Bestellung erstellt wurde.</param>
     public record OrderCreated(Order order, DateTime date) : INotification;
 }

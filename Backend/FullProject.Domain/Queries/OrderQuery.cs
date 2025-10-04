@@ -4,9 +4,11 @@ using FullProject.Domain.Entities;
 namespace FullProject.Domain.Queries
 {
     /// <summary>
-    /// Represents a query to retrieve a list of orders.
+    /// Stellt eine Abfrage dar, um eine Liste von Bestellungen abzurufen.
     /// </summary>
-    /// <remarks>This query is used to request a collection of <see cref="Order"/> objects.  The result of
-    /// executing this query is an <see cref="IList{T}"/> containing the orders.</remarks>
+    /// <remarks>
+    /// Diese Abfrage wird verwendet, um eine Sammlung von <see cref="Order"/>-Objekten anzufordern.
+    /// Das Ergebnis der Ausführung dieser Abfrage ist eine <see cref="IList{T}"/>, die die Bestellungen enthält.
+    /// </remarks>
     public record GetOrders() : IQuery<IList<Order>>;
 }

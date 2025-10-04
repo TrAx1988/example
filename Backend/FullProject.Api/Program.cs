@@ -16,10 +16,12 @@ namespace FullProject.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddInfrastructureServices();
+            builder.Services.AddServices();
+
+            builder.Services.AddEf(builder.Configuration);
 
             builder.Services.AddCommerce(builder.Configuration);
-            builder.Services.AddGraphQL();
+            builder.Services.AddGraphQL(builder.Configuration);
 
             builder.Services.AddMediator(builder.Configuration, [typeof(Infrastructure.Kafka.DependencyInjection)]);
 

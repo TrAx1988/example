@@ -1,7 +1,7 @@
 ﻿using Cortex.Mediator.Queries;
 using FullProject.Domain.Entities;
 using FullProject.Domain.Queries;
-using FullProject.Infrastructure;
+using FullProject.Infrastructure.Data;
 
 namespace FullProject.Application.Orders.Queries
 {

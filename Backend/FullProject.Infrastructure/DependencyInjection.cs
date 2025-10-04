@@ -4,7 +4,7 @@ namespace FullProject.Infrastructure
 {
     public static class DependencyInjection
     {
-        public static void AddInfrastructureServices(this IServiceCollection services)
+        public static void AddServices(this IServiceCollection services)
         {
             services.AddSingleton<ITimeService, TimeService>();
         }

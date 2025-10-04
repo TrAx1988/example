@@ -1,9 +1,11 @@
 ﻿using FullProject.Domain.Entities;
+using FullProject.Domain.Repository;
+using FullProject.Infrastructure.Database.Ef;
 using Microsoft.EntityFrameworkCore;
 
-namespace FullProject.Infrastructure.Database.Context;
+namespace FullProject.Infrastructure.Database.Commerce;
 
-public partial class CommerceContext : DbContext
+public partial class CommerceContext : BaseDbContext, ICommerceRepository
 {
     public CommerceContext()
     {

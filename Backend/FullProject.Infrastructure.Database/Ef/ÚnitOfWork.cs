@@ -1,9 +1,9 @@
-﻿
-using FullProject.Infrastructure.Database.Context;
+﻿using FullProject.Infrastructure.Data;
+using FullProject.Infrastructure.Database.Commerce;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace FullProject.Infrastructure.Database
+namespace FullProject.Infrastructure.Database.Ef
 {
     /// <inheritdoc/>
     internal class UnitOfWorkFactory : IUnitOfWorkFactory
