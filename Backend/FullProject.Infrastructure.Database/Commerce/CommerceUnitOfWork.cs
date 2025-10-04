@@ -1,4 +1,4 @@
-﻿using FullProject.Domain.Repository;
+﻿using FullProject.Domain.UnitOfWork;
 using FullProject.Infrastructure.Database.Ef;
 
 namespace FullProject.Infrastructure.Database.Commerce

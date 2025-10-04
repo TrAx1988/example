@@ -2,7 +2,7 @@
 using FullProject.Domain.Entities;
 using FullProject.Domain.Models.Orders;
 using FullProject.Domain.Queries;
-using FullProject.Domain.Repository;
+using FullProject.Domain.UnitOfWork;
 using Mapster;
 
 namespace FullProject.Application.Commerce.Orders.Queries

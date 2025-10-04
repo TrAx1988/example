@@ -1,20 +1,12 @@
 ﻿using FullProject.Domain.Entities;
-using FullProject.Domain.GraphQL.Queries;
-using FullProject.Domain.Repository;
+using FullProject.Domain.UnitOfWork;
 using HotChocolate.Authorization;
-using MapsterMapper;
 
 namespace FullProject.Infrastructure.GraphQL.Commerce.Query
 {
-    /// <inheritdoc/>
     [Authorize]
-    public class OrderQuery : IOrderQuery
+    public class OrderQuery
     {
-        public OrderQuery(IMapper mapper)
-        {
-        }
-
-        /// <inheritdoc/>
         [UsePaging]
         [UseProjection]
         [UseFiltering]

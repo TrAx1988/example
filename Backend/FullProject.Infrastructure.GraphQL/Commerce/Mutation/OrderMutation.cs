@@ -1,13 +1,11 @@
 ﻿using FullProject.Domain.Entities;
-using FullProject.Domain.GraphQL.Mutations;
-using FullProject.Domain.Repository;
+using FullProject.Domain.UnitOfWork;
 using HotChocolate.Authorization;
 
 namespace FullProject.Infrastructure.GraphQL.Commerce.Mutation
 {
-    /// <inheritdoc/>
     [Authorize]
-    public class OrderMutation : IOrderMutation
+    public class OrderMutation
     {
         public Task<Order> AddOrder([Service] ICommerceUnitOfWork unitOfWork, Order order)
         {

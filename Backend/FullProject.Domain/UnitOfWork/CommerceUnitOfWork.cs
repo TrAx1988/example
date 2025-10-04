@@ -1,6 +1,6 @@
 ﻿using FullProject.Infrastructure.Data;
 
-namespace FullProject.Domain.Repository
+namespace FullProject.Domain.UnitOfWork
 {
     /// <summary>
     /// Sitzung für Datenbankoperationen im Commerce.

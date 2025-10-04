@@ -1,5 +1,5 @@
 ﻿using FullProject.Domain.Entities;
-using FullProject.Domain.Repository;
+using FullProject.Domain.UnitOfWork;
 using FullProject.Infrastructure.Database.Ef;
 using Microsoft.EntityFrameworkCore;
 
