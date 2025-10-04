@@ -5,27 +5,39 @@ using Microsoft.OpenApi.Models;
 namespace FullProject.Api.Helper
 {
     /// <summary>
-    /// Transforms an OpenAPI document to include a "Bearer" security scheme if it is supported by the application.
+    /// Transformator für OpenAPI-Dokumente, der das Bearer-Sicherheits-Schema hinzufügt,
+    /// wenn das Authentifizierungsschema "Bearer" vorhanden ist.
     /// </summary>
-    /// <remarks>This transformer checks the available authentication schemes provided by the application and,
-    /// if a "Bearer" scheme is found, modifies the OpenAPI document to include the corresponding security scheme and
-    /// requirements. The "Bearer" scheme is configured to use JWT tokens in the HTTP Authorization header.</remarks>
     internal sealed class BearerSecuritySchemeTransformer : IOpenApiDocumentTransformer
     {
         private readonly IAuthenticationSchemeProvider _authenticationSchemeProvider;
 
+        /// <summary>
+        /// Initialisiert eine neue Instanz des <see cref="BearerSecuritySchemeTransformer"/>.
+        /// </summary>
+        /// <param name="authenticationSchemeProvider">Provider für Authentifizierungsschemata.</param>
         public BearerSecuritySchemeTransformer(IAuthenticationSchemeProvider authenticationSchemeProvider)
         {
             _authenticationSchemeProvider = authenticationSchemeProvider;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Transformiert das OpenAPI-Dokument, indem das Bearer-Sicherheits-Schema hinzugefügt wird,
+        /// falls das entsprechende Authentifizierungsschema vorhanden ist.
+        /// </summary>
+        /// <param name="document">Das zu transformierende OpenAPI-Dokument.</param>
+        /// <param name="context">Der Kontext der Transformation.</param>
+        /// <param name="cancellationToken">Token zum Abbrechen des Vorgangs.</param>
+        /// <returns>Ein Task, der die asynchrone Operation repräsentiert.</returns>
         public async Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
         {
+            // Alle verfügbaren Authentifizierungsschemata abrufen
             var authenticationSchemes = await _authenticationSchemeProvider.GetAllSchemesAsync();
 
+            // Prüfen, ob das "Bearer"-Schema vorhanden ist
             if (authenticationSchemes.Any(authScheme => authScheme.Name == "Bearer"))
             {
+                // Sicherheitsanforderungen für Bearer definieren
                 var requirements = new Dictionary<string, OpenApiSecurityScheme>
                 {
                     ["Bearer"] = new OpenApiSecurityScheme
@@ -37,9 +49,11 @@ namespace FullProject.Api.Helper
                     }
                 };
 
+                // Sicherheits-Schema zum Dokument hinzufügen
                 document.Components ??= new OpenApiComponents();
                 document.Components.SecuritySchemes = requirements;
 
+                // Sicherheitsanforderung zu allen Operationen hinzufügen
                 foreach (var operation in document.Paths.Values.SelectMany(path => path.Operations))
                 {
                     operation.Value.Security.Add(new OpenApiSecurityRequirement
@@ -56,5 +70,3 @@ namespace FullProject.Api.Helper
                 }
             }
         }
-    }
-}
