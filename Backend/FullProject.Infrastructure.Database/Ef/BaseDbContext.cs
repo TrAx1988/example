@@ -1,17 +1,22 @@
 ﻿using FullProject.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace FullProject.Infrastructure.Database.Ef
 {
     public abstract class BaseDbContext : DbContext, IRepository
     {
-        public BaseDbContext()
+        protected readonly string _name;
+
+        public BaseDbContext(string name)
         {
+            _name = name;
         }
 
-        public BaseDbContext(DbContextOptions options)
+        public BaseDbContext(string name, DbContextOptions options)
             : base(options)
         {
+            _name = name;
         }
 
         /// <inheritdoc/>
@@ -105,6 +110,26 @@ namespace FullProject.Infrastructure.Database.Ef
         void IRepository.Update<T>(T entity)
         {
             Set<T>().Update(entity);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                  .SetBasePath(Directory.GetCurrentDirectory())
+                  .AddJsonFile("appsettings.json", true)
+                  .AddEnvironmentVariables()
+                  .Build();
+
+            var connectionString = configuration.GetConnectionString(_name);
+
+            if (!string.IsNullOrWhiteSpace(connectionString))
+            {
+                connectionString = Environment.ExpandEnvironmentVariables(connectionString);
+
+                optionsBuilder.UseNpgsql(connectionString);
+            }
         }
     }
 }

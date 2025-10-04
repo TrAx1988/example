@@ -2,18 +2,18 @@
 using FullProject.Domain.Repository;
 using FullProject.Infrastructure.Database.Ef;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace FullProject.Infrastructure.Database.Commerce;
 
 public partial class CommerceContext : BaseDbContext, ICommerceRepository
 {
     public CommerceContext()
+        : base("Commerce")
     {
     }
 
     public CommerceContext(DbContextOptions<CommerceContext> options)
-        : base(options)
+        : base("Commerce", options)
     {
     }
 
@@ -30,26 +30,6 @@ public partial class CommerceContext : BaseDbContext, ICommerceRepository
     public virtual DbSet<Payment> Payments { get; set; }
 
     public virtual DbSet<Product> Products { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        base.OnConfiguring(optionsBuilder);
-
-        IConfigurationRoot configuration = new ConfigurationBuilder()
-              .SetBasePath(Directory.GetCurrentDirectory())
-              .AddJsonFile("appsettings.json", true)
-              .AddEnvironmentVariables()
-              .Build();
-
-        var connectionString = configuration.GetConnectionString("Commerce");
-
-        if (!string.IsNullOrWhiteSpace(connectionString))
-        {
-            connectionString = Environment.ExpandEnvironmentVariables(connectionString);
-
-            optionsBuilder.UseNpgsql(connectionString);
-        }
-    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
