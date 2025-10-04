@@ -7,16 +7,16 @@ namespace FullProject.Application.Orders.Queries
 {
     internal class GetOrdersHandler : IQueryHandler<GetOrders, IList<Order>>
     {
-        private readonly ISessionFactory _sessionFactory;
+        private readonly IUnitOfWorkFactory _sessionFactory;
 
-        public GetOrdersHandler(ISessionFactory sessionFactory)
+        public GetOrdersHandler(IUnitOfWorkFactory sessionFactory)
         {
             _sessionFactory = sessionFactory;
         }
 
         public Task<IList<Order>> Handle(GetOrders query, CancellationToken cancellationToken)
         {
-            using var session = _sessionFactory.CreateSession();
+            using var session = _sessionFactory.CreateUnitOfWork();
 
             IList<Order> result = session.GetRepository<Order>().GetAll().ToList();
 

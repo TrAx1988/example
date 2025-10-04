@@ -1,6 +1,7 @@
 
 using FullProject.Api.Helper;
 using FullProject.Application;
+using FullProject.Infrastructure;
 using FullProject.Infrastructure.Database;
 using FullProject.Infrastructure.GraphQL;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -15,8 +16,12 @@ namespace FullProject.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddInfrastructureServices();
+
             builder.Services.AddCommerce(builder.Configuration);
             builder.Services.AddGraphQL();
+
+            builder.Services.AddMediator(builder.Configuration, [typeof(Infrastructure.Kafka.DependencyInjection)]);
 
             builder.Services.AddExampleApplication(builder.Configuration);
 

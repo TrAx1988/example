@@ -7,17 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cortex.Mediator" Version="1.7.0" />
     <PackageReference Include="Mapster" Version="7.4.0" />
+    <PackageReference Include="Cortex.Mediator" Version="1.7.0" />
     <PackageReference Include="Mapster.DependencyInjection" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Orders\Commands\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\FullProject.Domain\FullProject.Domain.csproj" />
+    <ProjectReference Include="..\FullProject.Infrastructure.Kafka\FullProject.Infrastructure.Kafka.csproj" />
     <ProjectReference Include="..\FullProject.Infrastructure\FullProject.Infrastructure.csproj" />
   </ItemGroup>
 

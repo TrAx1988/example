@@ -3,7 +3,7 @@
     /// <summary>
     /// Session Factory to create a database session.
     /// </summary>
-    public interface ISessionFactory
+    public interface IUnitOfWorkFactory
     {
         /// <summary>
         /// Creates and returns a new session for interacting with the database.
@@ -12,7 +12,7 @@
         /// database-specific operations. Ensure proper disposal of the session when it is no longer needed to
         /// release any associated resources.</remarks>
         /// <returns>An object implementing the <see cref="ISession"/> interface, representing the newly created session.</returns>
-        ISession CreateSession();
+        IUnitOfWork CreateUnitOfWork();
     }
 
     /// <summary>
@@ -47,7 +47,7 @@
     /// <summary>
     /// Session for database operations.
     /// </summary>
-    public interface ISession : IDisposable, IAsyncDisposable
+    public interface IUnitOfWork : IDisposable, IAsyncDisposable
     {
         /// <summary>
         /// Save changes to the database.

@@ -16,7 +16,7 @@ namespace FullProject.Infrastructure.GraphQL.Query
         /// <inheritdoc/>
         public IQueryable<Order> Orders([Service] ICommerceRepository repository)
         {
-            throw new NotImplementedException();
+            return repository.GetAll<Order>(false);
         }
     }
 }

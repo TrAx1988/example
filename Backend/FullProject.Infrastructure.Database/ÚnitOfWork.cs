@@ -6,28 +6,28 @@ using Microsoft.EntityFrameworkCore.Storage;
 namespace FullProject.Infrastructure.Database
 {
     /// <inheritdoc/>
-    internal class SessionFactory : ISessionFactory
+    internal class UnitOfWorkFactory : IUnitOfWorkFactory
     {
         private readonly IServiceProvider _serviceProvider;
 
-        public SessionFactory(IServiceProvider serviceProvider)
+        public UnitOfWorkFactory(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
 
         /// <inheritdoc/>
-        public ISession CreateSession()
+        public IUnitOfWork CreateUnitOfWork()
         {
-            return new Session(new CommerceContext());
+            return new UnitOfWork(new CommerceContext());
         }
     }
 
     /// <inheritdoc/>
-    internal class Session : ISession
+    internal class UnitOfWork : IUnitOfWork
     {
         internal readonly DbContext _dbContext;
 
-        public Session(DbContext dbContext)
+        public UnitOfWork(DbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -74,12 +74,12 @@ namespace FullProject.Infrastructure.Database
     /// <inheritdoc/>
     internal class Transaction : ITransaction
     {
-        private readonly Session _session;
+        private readonly UnitOfWork _unitOfWork;
         private readonly IDbContextTransaction _transaction;
 
-        public Transaction(Session session, IDbContextTransaction transaction)
+        public Transaction(UnitOfWork unitOfWork, IDbContextTransaction transaction)
         {
-            _session = session;
+            _unitOfWork = unitOfWork;
             _transaction = transaction;
         }
 

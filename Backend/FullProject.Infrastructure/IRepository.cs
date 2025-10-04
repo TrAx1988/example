@@ -1,15 +1,13 @@
 ﻿namespace FullProject.Infrastructure
 {
     /// <summary>
-    /// Defines a generic repository for managing entities of type <typeparamref name="T"/>.
+    /// 
     /// </summary>
-    /// <remarks>This interface provides a contract for data access operations, such as retrieving entities.
-    /// Implementations of this interface are expected to handle the underlying data source and provide a consistent API
-    /// for interacting with entities of type <typeparamref name="T"/>.</remarks>
-    /// <typeparam name="T">The type of entity managed by the repository. Must be a reference type.</typeparam>
+    /// <typeparam name="T"></typeparam>
     public interface IRepository<T>
     {
         IQueryable<T> GetAll(bool tracking = true);
+
     }
 
     /// <summary>
