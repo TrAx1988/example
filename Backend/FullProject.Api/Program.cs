@@ -6,6 +6,7 @@ using FullProject.Infrastructure.Database;
 using FullProject.Infrastructure.GraphQL;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Scalar.AspNetCore;
+using System.Text.Json.Serialization;
 
 namespace FullProject.Api
 {
@@ -20,9 +21,8 @@ namespace FullProject.Api
             // Add services to the container.
             builder.Services.AddServices(builder.Configuration);
 
-            builder.Services.AddEf(builder.Configuration);
-
             builder.Services.AddCommerce(builder.Configuration);
+
             builder.Services.AddGraphQL(builder.Configuration);
 
             builder.Services.AddMediator(builder.Configuration, [typeof(Infrastructure.Kafka.DependencyInjection)]);
@@ -42,7 +42,12 @@ namespace FullProject.Api
             }
 
             builder.Services.AddHttpContextAccessor();
-            builder.Services.AddControllers();
+            builder.Services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                });
+
             builder.Services.AddOpenApi(option =>
             {
                 option.AddDocumentTransformer<BearerSecuritySchemeTransformer>();

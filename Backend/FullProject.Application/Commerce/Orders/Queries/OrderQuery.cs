@@ -1,9 +1,7 @@
 ﻿using Cortex.Mediator.Queries;
 using FullProject.Domain.Entities;
 using FullProject.Domain.Queries;
-using FullProject.Infrastructure.Data;
-using FullProject.Infrastructure.Database.Extensions;
-using FullProject.Infrastructure.Extensions;
+using FullProject.Domain.Repository;
 
 namespace FullProject.Application.Commerce.Orders.Queries
 {
@@ -12,21 +10,16 @@ namespace FullProject.Application.Commerce.Orders.Queries
     /// </summary>
     internal class GetOrdersHandler : IQueryHandler<GetOrders, IList<Order>>
     {
-        private readonly IUnitOfWorkFactory _sessionFactory;
+        private readonly ICommerceUnitOfWork _unitOfWork;
 
-        public GetOrdersHandler(IUnitOfWorkFactory sessionFactory)
+        public GetOrdersHandler(ICommerceUnitOfWork unitOfWork)
         {
-            _sessionFactory = sessionFactory;
+            _unitOfWork = unitOfWork;
         }
 
         public Task<IList<Order>> Handle(GetOrders query, CancellationToken cancellationToken)
         {
-            using var session = _sessionFactory.CreateCommercialUnitOfWork();
-
-            IList<Order> result = session.Repository.GetAll<Order>()
-                .IncludeNavigation(p => p.OrderItems)
-                .IncludeNavigation(p => p.Customer)
-                .ThenIncludeNavigation(p => p.Customer, p => p.Addresses)
+            IList<Order> result = _unitOfWork.Repository.GetAll<Order>(false, true)
                 .ToList();
 
             return Task.FromResult(result);

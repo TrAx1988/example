@@ -25,4 +25,8 @@
     <ProjectReference Include="..\FullProject.Infrastructure\FullProject.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
 </Project>

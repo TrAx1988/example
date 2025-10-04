@@ -1,23 +1,6 @@
 ﻿namespace FullProject.Infrastructure.Data
 {
     /// <summary>
-    /// Sitzungsfabrik zum Erstellen einer Datenbanksitzung.
-    /// </summary>
-    public interface IUnitOfWorkFactory
-    {
-        /// <summary>
-        /// Erstellt und gibt eine neue Sitzung zur Interaktion mit der Datenbank zurück.
-        /// </summary>
-        /// <remarks>
-        /// Die zurückgegebene Sitzung stellt Methoden und Eigenschaften zur Verwaltung
-        /// von datenbankspezifischen Operationen bereit. Stelle sicher, dass die Sitzung ordnungsgemäß entsorgt wird,
-        /// wenn sie nicht mehr benötigt wird, um alle zugehörigen Ressourcen freizugeben.
-        /// </remarks>
-        /// <returns>Ein Objekt, das das <see cref="IUnitOfWork"/>-Interface implementiert und die neu erstellte Sitzung repräsentiert.</returns>
-        IUnitOfWork CreateUnitOfWork();
-    }
-
-    /// <summary>
     /// Definiert einen Vertrag zur Verwaltung einer Transaktion, sodass Änderungen bestätigt oder zurückgesetzt werden können.
     /// </summary>
     /// <remarks>

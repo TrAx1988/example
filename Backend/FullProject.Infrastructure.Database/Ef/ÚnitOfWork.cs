@@ -1,25 +1,10 @@
 ﻿using FullProject.Infrastructure.Data;
-using FullProject.Infrastructure.Database.Commerce;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace FullProject.Infrastructure.Database.Ef
 {
     /// <inheritdoc/>
-    internal class UnitOfWorkFactory : IUnitOfWorkFactory
-    {
-        public UnitOfWorkFactory()
-        {
-        }
-
-        /// <inheritdoc/>
-        public IUnitOfWork CreateUnitOfWork()
-        {
-            return new UnitOfWork(new CommerceContext());
-        }
-    }
-
-    /// <inheritdoc/>
-    internal class UnitOfWork : IUnitOfWork
+    internal abstract class UnitOfWork : IUnitOfWork
     {
         internal readonly BaseDbContext _dbContext;
 
