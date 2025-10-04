@@ -2,6 +2,8 @@
 using FullProject.Domain.Entities;
 using FullProject.Domain.Queries;
 using FullProject.Infrastructure.Data;
+using FullProject.Infrastructure.Database.Extensions;
+using FullProject.Infrastructure.Extensions;
 
 namespace FullProject.Application.Commerce.Orders.Queries
 {
@@ -19,9 +21,13 @@ namespace FullProject.Application.Commerce.Orders.Queries
 
         public Task<IList<Order>> Handle(GetOrders query, CancellationToken cancellationToken)
         {
-            using var session = _sessionFactory.CreateUnitOfWork();
+            using var session = _sessionFactory.CreateCommercialUnitOfWork();
 
-            IList<Order> result = session.GetRepository<Order>().GetAll().ToList();
+            IList<Order> result = session.Repository.GetAll<Order>()
+                .IncludeNavigation(p => p.OrderItems)
+                .IncludeNavigation(p => p.Customer)
+                .ThenIncludeNavigation(p => p.Customer, p => p.Addresses)
+                .ToList();
 
             return Task.FromResult(result);
         }

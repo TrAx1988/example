@@ -10,7 +10,8 @@
         /// Gibt alle Entitäten als abfragbare Sammlung zurück.
         /// </summary>
         /// <param name="tracking">Gibt an, ob Änderungen an den Entitäten nachverfolgt werden sollen.</param>
-        IQueryable<T> GetAll(bool tracking = true);
+        /// <param name="autoInclude">Gibt an, ob Navigationen geladen werden sollen.</param>
+        IQueryable<T> GetAll(bool tracking = true, bool autoInclude = true);
 
         /// <summary>
         /// Sucht eine Entität anhand der angegebenen Schlüsselwerte.
@@ -116,7 +117,8 @@
         /// </summary>
         /// <typeparam name="T">Der Typ der Entität.</typeparam>
         /// <param name="tracking">Gibt an, ob Änderungen an den Entitäten nachverfolgt werden sollen.</param>
-        IQueryable<T> GetAll<T>(bool tracking = true) where T : class;
+        /// <param name="autoInclude">Gibt an, ob Navigationen geladen werden sollen.</param>
+        IQueryable<T> GetAll<T>(bool tracking = true, bool autoInclude = true) where T : class;
 
         /// <summary>
         /// Sucht eine Entität des angegebenen Typs anhand der Schlüsselwerte.

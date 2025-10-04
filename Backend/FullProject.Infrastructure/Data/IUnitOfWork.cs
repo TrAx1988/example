@@ -55,6 +55,11 @@
     public interface IUnitOfWork : IDisposable, IAsyncDisposable
     {
         /// <summary>
+        /// Aktuelles Repository zur Verwaltung von Entitäten.
+        /// </summary>
+        IRepository Repository { get; }
+
+        /// <summary>
         /// Speichert Änderungen in der Datenbank.
         /// </summary>
         void Save();

@@ -50,9 +50,16 @@ namespace FullProject.Infrastructure.Database.Ef
         }
 
         /// <inheritdoc/>
-        public IQueryable<T> GetAll(bool tracking = true)
+        public IQueryable<T> GetAll(bool tracking = true, bool autoInclude = true)
         {
-            return tracking ? _dbSet : _dbSet.AsNoTracking();
+            var query = tracking ? _dbSet : _dbSet.AsNoTracking();
+
+            if (!autoInclude)
+            {
+                query = query.IgnoreAutoIncludes();
+            }
+
+            return query;
         }
 
         /// <inheritdoc/>

@@ -1,6 +1,5 @@
 ﻿using FullProject.Infrastructure.Data;
 using FullProject.Infrastructure.Database.Commerce;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace FullProject.Infrastructure.Database.Ef
@@ -8,11 +7,8 @@ namespace FullProject.Infrastructure.Database.Ef
     /// <inheritdoc/>
     internal class UnitOfWorkFactory : IUnitOfWorkFactory
     {
-        private readonly IServiceProvider _serviceProvider;
-
-        public UnitOfWorkFactory(IServiceProvider serviceProvider)
+        public UnitOfWorkFactory()
         {
-            _serviceProvider = serviceProvider;
         }
 
         /// <inheritdoc/>
@@ -25,9 +21,12 @@ namespace FullProject.Infrastructure.Database.Ef
     /// <inheritdoc/>
     internal class UnitOfWork : IUnitOfWork
     {
-        internal readonly DbContext _dbContext;
+        internal readonly BaseDbContext _dbContext;
 
-        public UnitOfWork(DbContext dbContext)
+        /// <inheritdoc/>
+        public IRepository Repository => _dbContext;
+
+        public UnitOfWork(BaseDbContext dbContext)
         {
             _dbContext = dbContext;
         }
