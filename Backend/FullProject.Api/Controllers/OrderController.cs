@@ -1,6 +1,6 @@
 ﻿using Cortex.Mediator;
 using FullProject.Domain.Commands;
-using FullProject.Domain.Entities;
+using FullProject.Domain.Models.Orders;
 using FullProject.Domain.Queries;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,11 +21,11 @@ namespace FullProject.Api.Controllers
 
         [HttpGet]
         [Route("orders")]
-        public async Task<IList<Order>> GetOrdersAsync()
+        public async Task<IList<OrderDto>> GetOrdersAsync()
         {
-            var result = await _mediator.SendQueryAsync<GetOrders, IList<Order>>(new GetOrders());
+            var result = await _mediator.SendQueryAsync<GetOrders, IList<OrderDto>>(new GetOrders());
 
-            await _mediator.SendCommandAsync<CreateOrderCommand, Order>(new CreateOrderCommand(new Order()));
+            await _mediator.SendCommandAsync<CreateOrderCommand, OrderDto>(new CreateOrderCommand(new OrderDto()));
 
             return result;
         }

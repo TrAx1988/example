@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Cortex.Mediator" Version="1.7.0" />
     <PackageReference Include="HotChocolate.Types" Version="15.1.10" />
   </ItemGroup>

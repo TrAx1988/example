@@ -1,5 +1,6 @@
 ﻿using Cortex.Mediator.Queries;
 using FullProject.Domain.Entities;
+using FullProject.Domain.Models.Orders;
 
 namespace FullProject.Domain.Queries
 {
@@ -10,5 +11,5 @@ namespace FullProject.Domain.Queries
     /// Diese Abfrage wird verwendet, um eine Sammlung von <see cref="Order"/>-Objekten anzufordern.
     /// Das Ergebnis der Ausführung dieser Abfrage ist eine <see cref="IList{T}"/>, die die Bestellungen enthält.
     /// </remarks>
-    public record GetOrders() : IQuery<IList<Order>>;
+    public record GetOrders() : IQuery<IList<OrderDto>>;
 }

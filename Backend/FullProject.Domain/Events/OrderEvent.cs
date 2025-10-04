@@ -1,5 +1,5 @@
 ﻿using Cortex.Mediator.Notifications;
-using FullProject.Domain.Entities;
+using FullProject.Domain.Models.Orders;
 
 namespace FullProject.Domain.Events
 {
@@ -13,5 +13,5 @@ namespace FullProject.Domain.Events
     /// </remarks>
     /// <param name="order">Die erstellte Bestellung. Dieser Parameter darf nicht <see langword="null"/> sein.</param>
     /// <param name="date">Das Datum und die Uhrzeit, zu der die Bestellung erstellt wurde.</param>
-    public record OrderCreated(Order order, DateTime date) : INotification;
+    public record OrderCreated(OrderDto order, DateTime date) : INotification;
 }

@@ -2,6 +2,7 @@
 using Mapster;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace FullProject.Application
 {
@@ -10,6 +11,8 @@ namespace FullProject.Application
         public static void AddExampleApplication(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddMapster();
+
+            TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetExecutingAssembly());
         }
 
         public static void AddMediator(this IServiceCollection services, IConfiguration configuration, Type[] assemblyToScan)

@@ -1,14 +1,16 @@
 ﻿using Cortex.Mediator.Queries;
 using FullProject.Domain.Entities;
+using FullProject.Domain.Models.Orders;
 using FullProject.Domain.Queries;
 using FullProject.Domain.Repository;
+using Mapster;
 
 namespace FullProject.Application.Commerce.Orders.Queries
 {
     /// <summary>
     /// Stellt einen Handler für das Ereignis <see cref="GetOrders"/> dar.
     /// </summary>
-    internal class GetOrdersHandler : IQueryHandler<GetOrders, IList<Order>>
+    internal class GetOrdersHandler : IQueryHandler<GetOrders, IList<OrderDto>>
     {
         private readonly ICommerceUnitOfWork _unitOfWork;
 
@@ -17,9 +19,9 @@ namespace FullProject.Application.Commerce.Orders.Queries
             _unitOfWork = unitOfWork;
         }
 
-        public Task<IList<Order>> Handle(GetOrders query, CancellationToken cancellationToken)
+        public Task<IList<OrderDto>> Handle(GetOrders query, CancellationToken cancellationToken)
         {
-            IList<Order> result = _unitOfWork.Repository.GetAll<Order>(false, true)
+            IList<OrderDto> result = _unitOfWork.Repository.GetAll<Order>(false, true).ProjectToType<OrderDto>()
                 .ToList();
 
             return Task.FromResult(result);
