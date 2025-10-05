@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullProject.Infrastructure.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullProject.Api.Proxy", "FullProject.Api.Proxy\FullProject.Api.Proxy.csproj", "{4FDA70F3-12AD-4EAB-BD9C-324E17448D01}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mock", "Mock", "{9E7B2994-E49C-47B3-A8F7-7DCF3569A8E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullProject.Infrastructure.Proxy.Mock", "FullProject.Infrastructure.Proxy.Mock\FullProject.Infrastructure.Proxy.Mock.csproj", "{FF9AEFF8-6BC1-4424-8BF1-37BE3D9F6183}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +79,10 @@ Global
 		{4FDA70F3-12AD-4EAB-BD9C-324E17448D01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FDA70F3-12AD-4EAB-BD9C-324E17448D01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FDA70F3-12AD-4EAB-BD9C-324E17448D01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF9AEFF8-6BC1-4424-8BF1-37BE3D9F6183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF9AEFF8-6BC1-4424-8BF1-37BE3D9F6183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF9AEFF8-6BC1-4424-8BF1-37BE3D9F6183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF9AEFF8-6BC1-4424-8BF1-37BE3D9F6183}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +98,8 @@ Global
 		{CCBF97C7-F2A5-42E8-92BE-B3CC38A3B4CB} = {39242489-1CD3-48B4-9BE6-491279039D7E}
 		{CA691935-5D28-4C26-B4FE-E497DD30E993} = {39242489-1CD3-48B4-9BE6-491279039D7E}
 		{4FDA70F3-12AD-4EAB-BD9C-324E17448D01} = {11C6815E-B27C-4457-80AE-AB0AF13C3102}
+		{9E7B2994-E49C-47B3-A8F7-7DCF3569A8E1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{FF9AEFF8-6BC1-4424-8BF1-37BE3D9F6183} = {9E7B2994-E49C-47B3-A8F7-7DCF3569A8E1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C6CF1524-1647-40CC-9320-9272611FABD7}

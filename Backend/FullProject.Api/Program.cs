@@ -4,8 +4,10 @@ using FullProject.Application;
 using FullProject.Infrastructure;
 using FullProject.Infrastructure.Database;
 using FullProject.Infrastructure.GraphQL;
+using FullProject.Infrastructure.Proxy;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Scalar.AspNetCore;
+using System.Reflection;
 using System.Text.Json.Serialization;
 
 namespace FullProject.Api
@@ -19,12 +21,18 @@ namespace FullProject.Api
             // Add services to the container.
             builder.Services.AddServices(builder.Configuration);
 
-            builder.Services.AddMediator(builder.Configuration, [typeof(Infrastructure.Kafka.DependencyInjection)]);
+            // Mediator
+            var kafkaAssembly = Assembly.GetAssembly(typeof(Infrastructure.Kafka.DependencyInjection))!;
+            var domainAssembly = Assembly.GetAssembly(typeof(Domain.UnitOfWork.ICommerceUnitOfWork))!;
+
+            builder.Services.AddMediator(builder.Configuration, [kafkaAssembly, domainAssembly]);
             builder.Services.AddMapping();
 
             builder.Services.AddCommerce(builder.Configuration);
 
             builder.Services.AddGraphQL(builder.Configuration);
+
+            builder.Services.AddProxyServices(builder.Configuration);
 
 
             // Application Insights

@@ -22,16 +22,16 @@ namespace FullProject.Application
             TypeAdapterConfig.GlobalSettings.Scan(assemblies.ToArray());
         }
 
-        public static void AddMediator(this IServiceCollection services, IConfiguration configuration, Type[]? assembliesToScan = null)
+        public static void AddMediator(this IServiceCollection services, IConfiguration configuration, Assembly[]? assembliesToScan = null)
         {
-            List<Type> assemblies = [typeof(DependencyInjection), typeof(Domain.Queries.GetOrders)];
+            List<Assembly> assemblies = [Assembly.GetAssembly(typeof(DependencyInjection))];
 
             if (assembliesToScan is not null && assembliesToScan.Length > 0)
             {
                 assemblies.AddRange(assembliesToScan);
             }
 
-            services.AddCortexMediator(configuration, assemblies.ToArray(), options =>
+            services.AddCortexMediator(configuration, assemblies.Select(i => i.ExportedTypes.FirstOrDefault()).Where(i => i is not null).ToArray(), options =>
             {
                 options.AddDefaultBehaviors();
 

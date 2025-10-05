@@ -18,11 +18,7 @@
     <PackageReference Include="Scalar.AspNetCore" Version="2.8.10" />
 		<PackageReference Include="Cortex.Mediator" Version="1.7.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ContainerPort Include="8081" />
-  </ItemGroup>
-
+	
   <ItemGroup>
     <ProjectReference Include="..\FullProject.Application\FullProject.Application.csproj" />
     <ProjectReference Include="..\FullProject.Infrastructure.Database\FullProject.Infrastructure.Database.csproj" />
